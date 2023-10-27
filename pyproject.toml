@@ -2,12 +2,7 @@
 name = "PROJECTNAME"
 version = "0.0.1"
 description = "Description of this package"
-authors = [
-    {
-        name="Name Surname",
-        email="name.surname@example.com"
-    }
-]
+authors = [{name="Name Surname", email="name.surname@example.com"}]
 license = {file = "LICENSE"}
 
 requires-python = ">=3.9"
