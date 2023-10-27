@@ -10,6 +10,9 @@ dependencies = [
   "fractal-tasks-core",
 ]
 
+[project.optional-dependencies]
+dev = ["devtools", "pytest", "requests", "pydantic<2"]
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
