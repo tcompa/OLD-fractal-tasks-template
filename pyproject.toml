@@ -1,0 +1,17 @@
+[project]
+name = "PROJECTNAME"
+version = "0.0.1"
+description = "Description"
+authors = [{name="Name Surname", email="name.surname@example.com"}]
+license = {file = "LICENSE"}
+
+requires-python = ">=3.9"
+dependencies = [
+  "fractal-tasks-core",
+]
+
+# packages = [{include = "src"}]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
