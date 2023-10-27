@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["devtools", "pytest", "requests", "pydantic<2"]
+dev = ["devtools", "pytest", "requests", "pydantic<2", "build"]
 
 [build-system]
 requires = ["setuptools"]
