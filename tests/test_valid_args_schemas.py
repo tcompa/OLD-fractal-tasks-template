@@ -19,11 +19,13 @@ from fractal_tasks_core.dev.lib_signature_constraints import (
     _validate_function_signature,
 )
 
-
 import PROJECTNAME
 
-PROJECTNAME_DIR = Path(PROJECTNAME.__file__).parent
-with (PROJECTNAME_DIR / "__FRACTAL_MANIFEST__.json").open("r") as f:
+MANIFEST_FILE = (
+        Path(PROJECTNAME.__file__).parent /
+        "__FRACTAL_MANIFEST__.json"
+        )
+with MANIFEST_FILE.open("r") as f:
     MANIFEST = json.load(f)
 TASK_LIST = MANIFEST["task_list"]
 debug(TASK_LIST)
@@ -119,7 +121,9 @@ def test_args_schemas_are_up_to_date():
     for ind_task, task in enumerate(TASK_LIST):
         print(f"Now handling {task['executable']}")
         old_schema = TASK_LIST[ind_task]["args_schema"]
-        new_schema = create_schema_for_single_task(task["executable"], package="PROJECTNAME")
+        new_schema = create_schema_for_single_task(
+                task["executable"], package="PROJECTNAME"
+                )
         # The following step is required because some arguments may have a
         # default which has a non-JSON type (e.g. a tuple), which we need to
         # convert to JSON type (i.e. an array) before comparison.
