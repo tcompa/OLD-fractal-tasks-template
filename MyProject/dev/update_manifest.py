@@ -24,7 +24,7 @@ from fractal_tasks_core.dev.lib_task_docs import create_docs_info
 from fractal_tasks_core.dev.lib_task_docs import create_docs_link
 
 
-PACKAGE = "PROJECTNAME"
+PACKAGE = "MyProject"
 
 
 if __name__ == "__main__":

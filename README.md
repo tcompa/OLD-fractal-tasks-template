@@ -8,7 +8,7 @@ Template for a Fractal-compatible Python package of tasks
 git clone git@github.com:exactlab/fractal-tasks-template.git
 ```
 
-replace all what is needed (e.g. PROJECTNAME and name/email of authors, and version)
+replace all what is needed (e.g. MyProject and name/email of authors, and version)
 
 ```
 python -m venv venv
