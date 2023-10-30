@@ -19,16 +19,9 @@ from fractal_tasks_core.dev.lib_signature_constraints import (
     _validate_function_signature,
 )
 
-import PROJECTNAME
-
-MANIFEST_FILE = (
-        Path(PROJECTNAME.__file__).parent /
-        "__FRACTAL_MANIFEST__.json"
-        )
-with MANIFEST_FILE.open("r") as f:
-    MANIFEST = json.load(f)
-TASK_LIST = MANIFEST["task_list"]
-debug(TASK_LIST)
+from . import PACKAGE
+from . import MANIFEST
+from . import TASK_LIST
 
 
 def test_validate_function_signature():
@@ -109,7 +102,7 @@ def test_task_functions_have_valid_signatures():
     for ind_task, task in enumerate(TASK_LIST):
         function_name = Path(task["executable"]).with_suffix("").name
         task_function = _extract_function(
-                task["executable"], function_name, package_name="PROJECTNAME"
+                task["executable"], function_name, package_name=PACKAGE
                 )
         _validate_function_signature(task_function)
 
@@ -122,7 +115,7 @@ def test_args_schemas_are_up_to_date():
         print(f"Now handling {task['executable']}")
         old_schema = TASK_LIST[ind_task]["args_schema"]
         new_schema = create_schema_for_single_task(
-                task["executable"], package="PROJECTNAME"
+                task["executable"], package=PACKAGE
                 )
         # The following step is required because some arguments may have a
         # default which has a non-JSON type (e.g. a tuple), which we need to

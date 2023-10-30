@@ -1,13 +1,11 @@
 # FIXME perhaps we should not have this one, because of Pydantic v1/v2 issues
 
-import json
 import sys
-from pathlib import Path
 
 import requests
 from devtools import debug
 
-import PROJECTNAME
+from . import MANIFEST
 
 
 def test_valid_manifest(tmp_path):
@@ -27,10 +25,5 @@ def test_valid_manifest(tmp_path):
     sys.path.append(tmp_path.as_posix())
     from fractal_manifest import ManifestV1
 
-    module_dir = Path(PROJECTNAME.__file__).parent
-    manifest_file = module_dir / "__FRACTAL_MANIFEST__.json"
-    debug(manifest_file)
-    with manifest_file.open("r") as fin:
-        manifest_dict = json.load(fin)
-    manifest = ManifestV1(**manifest_dict)
+    manifest = ManifestV1(**MANIFEST)
     debug(manifest)

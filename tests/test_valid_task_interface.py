@@ -7,8 +7,8 @@ from subprocess import PIPE
 import pytest
 from devtools import debug
 
-import PROJECTNAME
-
+from . import MANIFEST
+from . import PACKAGE_DIR
 
 def validate_command(cmd: str):
     """
@@ -34,12 +34,8 @@ def validate_command(cmd: str):
     assert "ValueError" not in stderr
 
 
-module_dir = Path(PROJECTNAME.__file__).parent
-with (module_dir / "__FRACTAL_MANIFEST__.json").open("r") as fin:
-    manifest_dict = json.load(fin)
 
-
-@pytest.mark.parametrize("task", manifest_dict["task_list"])
+@pytest.mark.parametrize("task", MANIFEST["task_list"])
 def test_task_interface(task, tmp_path):
 
     tmp_file_args = str(tmp_path / "args.json")
@@ -48,7 +44,7 @@ def test_task_interface(task, tmp_path):
         args = dict(wrong_arg_1=123, wrong_arg_2=[1, 2, 3])
         json.dump(args, fout, indent=4)
 
-    task_path = (module_dir / task["executable"]).as_posix()
+    task_path = (PACKAGE_DIR / task["executable"]).as_posix()
     cmd = (
         f"python {task_path} "
         f"-j {tmp_file_args} "

@@ -1,14 +1,31 @@
 {
-  "args_schema_version": null,
-  "has_args_schemas": false,
+  "args_schema_version": "pydantic_v1",
+  "has_args_schemas": true,
   "manifest_version": "1",
   "task_list": [
-      {
-          "name": "My Task",
-          "executable": "my_task.py",
-          "input_type": "Any",
-          "output_type": "Any",
-          "meta": {}
-      }
+    {
+      "name": "My Task",
+      "executable": "my_task.py",
+      "input_type": "Any",
+      "output_type": "Any",
+      "meta": {},
+      "args_schema": {
+        "title": "MyTask",
+        "type": "object",
+        "properties": {
+          "arg1": {
+            "title": "Arg1",
+            "type": "integer",
+            "description": "description"
+          }
+        },
+        "required": [
+          "arg1"
+        ],
+        "additionalProperties": false
+      },
+      "docs_info": "This is the short description\n\nThis is a long description. This is a long description. This is a long\ndescription. This is a long description. This is a long description.",
+      "docs_link": "https://example.com"
+    }
   ]
 }
